@@ -1,0 +1,218 @@
+/* Van Zoest Vastgoed — bescheiden site. Lettertypen staan op de eigen server (geen Google Fonts). */
+@font-face { font-family: "Bodoni Moda"; src: url("fonts/BodoniModa.ttf") format("truetype"); font-weight: 400 900; font-display: swap; }
+@font-face { font-family: "Bodoni Moda"; src: url("fonts/BodoniModa-Italic.ttf") format("truetype"); font-weight: 400 900; font-style: italic; font-display: swap; }
+@font-face { font-family: "Jost"; src: url("fonts/Jost.ttf") format("truetype"); font-weight: 100 900; font-display: swap; }
+
+/* Licht (standaard) */
+:root {
+  --smaragd: #0B3B2E;
+  --smaragd-donker: #072A21;
+  --champagne: #E8D3A2;
+  --ivoor: #F4F1EA;
+  --brons-donker: #7A5F38;
+  --kop: "Bodoni Moda", Didot, Georgia, serif;
+  --tekst: "Jost", Arial, sans-serif;
+
+  color-scheme: light;
+  --bg: var(--ivoor);
+  --tekstkleur: #111111;
+  --label: var(--brons-donker);
+  --lijn: #DCD5C6;
+  --link: var(--smaragd);
+  --link-hover: var(--brons-donker);
+  --vlak: var(--smaragd);
+  --voet: var(--smaragd-donker);
+  --open-bg: #FBEFC8;
+  --open-tekst: #6B4E12;
+}
+
+/* Donker */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0A1E18;
+  --tekstkleur: #E6E1D6;
+  --label: var(--champagne);
+  --lijn: rgba(232, 211, 162, 0.18);
+  --link: var(--champagne);
+  --link-hover: #FFFFFF;
+  --vlak: #072A21;
+  --voet: #04170F;
+  --open-bg: rgba(232, 211, 162, 0.16);
+  --open-tekst: var(--champagne);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0A1E18;
+    --tekstkleur: #E6E1D6;
+    --label: var(--champagne);
+    --lijn: rgba(232, 211, 162, 0.18);
+    --link: var(--champagne);
+    --link-hover: #FFFFFF;
+    --vlak: #072A21;
+    --voet: #04170F;
+    --open-bg: rgba(232, 211, 162, 0.16);
+    --open-tekst: var(--champagne);
+  }
+}
+
+* { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+@page { margin: 0; }
+body { margin: 0; background: var(--bg); color: var(--tekstkleur); font-family: var(--tekst); font-size: 18px; line-height: 1.7; }
+a { color: var(--link); text-decoration: none; border-bottom: 1px solid var(--champagne); }
+a:hover { color: var(--link-hover); }
+:focus-visible { outline: 2px solid var(--champagne); outline-offset: 3px; }
+.smal { width: min(100% - 32px, 640px); margin: 0 auto; }
+
+/* Balk bovenin: menu, taal en licht/donker */
+.balk { position: absolute; top: 0; right: 0; left: 0; }
+.balk .binnen { width: min(100% - 32px, 1120px); margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 8px 28px; padding-top: 18px; }
+.menu { display: flex; gap: 24px; }
+.menu a, .taal a, .taal span { color: #CFC8B8; border-bottom: 1px solid transparent; font-size: 15px; letter-spacing: 0.08em; padding: 8px 0; }
+.menu a:hover, .menu a[aria-current="page"], .taal a:hover, .taal [aria-current="true"] { color: var(--champagne); border-bottom-color: var(--champagne); }
+.instellingen { display: flex; align-items: center; gap: 12px; }
+.taal { display: flex; gap: 4px; }
+.taal a, .taal span { font-size: 14px; letter-spacing: 0.12em; min-width: 36px; text-align: center; }
+.thema-knop { width: 40px; height: 40px; display: grid; place-items: center; background: transparent; border: 1px solid rgba(232, 211, 162, 0.4); color: var(--champagne); cursor: pointer; padding: 0; }
+.thema-knop:hover { border-color: var(--champagne); }
+.thema-knop svg { width: 18px; height: 18px; }
+.thema-knop .zon { display: none; }
+:root[data-theme="dark"] .thema-knop .zon { display: block; }
+:root[data-theme="dark"] .thema-knop .maan { display: none; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .thema-knop .zon { display: block; }
+  :root:not([data-theme="light"]) .thema-knop .maan { display: none; }
+}
+
+/* Opening home: alleen het logo, rustig en ruim */
+.opening { position: relative; background: var(--vlak); min-height: 72vh; display: grid; place-items: center; padding: 110px 16px 72px; text-align: center; }
+.opening h1 { margin: 0; }
+.opening img { width: min(340px, 72vw); height: auto; display: block; margin: 0 auto; }
+.opening .streep { width: 48px; height: 1px; background: var(--champagne); opacity: 0.6; margin: 40px auto 22px; }
+.opening p { margin: 0; color: var(--champagne); font-family: var(--kop); font-style: italic; font-size: clamp(19px, 2.4vw, 23px); }
+
+/* Kop subpagina: klein logo, korte titel */
+.kop { position: relative; background: var(--vlak); padding: 110px 0 64px; }
+.kop .logo { display: inline-block; border: 0; margin-bottom: 40px; }
+.kop .logo img { height: 40px; width: auto; display: block; }
+.kop h1 { margin: 0; font-family: var(--kop); font-weight: 700; color: var(--ivoor); font-size: clamp(38px, 6vw, 56px); line-height: 1.1; }
+
+/* Tekst */
+.tekst { padding: 96px 0 88px; }
+.label { font-size: 13px; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: var(--label); margin: 0 0 14px; }
+.tekst p { margin: 0 0 20px; }
+.tekst p:last-child { margin-bottom: 0; }
+.verder { margin-top: 36px !important; font-size: 16px; letter-spacing: 0.04em; }
+
+/* Contactgegevens */
+.contact { padding: 88px 0 96px; }
+.blok { padding: 40px 0; border-top: 1px solid var(--lijn); }
+.blok:first-child { border-top: 0; padding-top: 0; }
+.blok p { margin: 0; }
+.blok p + p { margin-top: 12px; }
+.vastor { margin-top: 22px !important; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; }
+.vastor a { display: inline-block; border: 0; padding: 10px 0; }
+.vastor img { height: 56px; width: auto; }
+.vastor a:hover img { opacity: 0.8; }
+
+/* Beeld dat per thema wisselt */
+.alleen-donker { display: none; }
+:root[data-theme="dark"] .alleen-licht { display: none; }
+:root[data-theme="dark"] .alleen-donker { display: block; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .alleen-licht { display: none; }
+  :root:not([data-theme="light"]) .alleen-donker { display: block; }
+}
+
+/* Knoplink (naar Vastor, Domust) */
+.knop { display: inline-block; margin-top: 18px; padding: 11px 20px; border: 1px solid var(--link); color: var(--link); font-size: 15px; letter-spacing: 0.06em; }
+.knop:hover { background: var(--link); color: var(--bg); }
+.knop::after { content: " \2192"; }
+
+/* Blokken op home: Vastor, Domust, technische dienst */
+.organisatie { border-top: 1px solid var(--lijn); padding: 88px 0 96px; }
+.breed { width: min(100% - 32px, 1120px); margin: 0 auto; }
+.organisatie > .label { text-align: center; margin-bottom: 44px; }
+.drie { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.kaart-blok { border-top: 2px solid var(--champagne); padding-top: 26px; display: flex; flex-direction: column; align-items: flex-start; }
+.kaart-blok h2 { font-family: var(--kop); font-weight: 700; font-size: 26px; line-height: 1.2; margin: 0 0 16px; }
+.kaart-blok p { margin: 0 0 14px; font-size: 17px; }
+.kaart-blok .vastor { margin-top: 4px !important; }
+.kaart-blok .vastor img { height: 46px; }
+
+/* Projecten */
+.intro { padding: 72px 0 8px; }
+.intro p { margin: 0; font-size: 19px; }
+.filter { display: flex; flex-wrap: wrap; gap: 10px; margin: 36px 0 0; padding: 0; list-style: none; }
+.filter button { font: inherit; font-size: 14px; letter-spacing: 0.06em; background: transparent; color: var(--tekstkleur); border: 1px solid var(--lijn); padding: 8px 16px; cursor: pointer; }
+.filter button:hover { border-color: var(--champagne); }
+.filter button[aria-pressed="true"] { background: var(--vlak); border-color: var(--vlak); color: var(--champagne); }
+.projecten { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 32px; padding: 44px 0 104px; margin: 0; list-style: none; }
+.project[hidden] { display: none; }
+.project figure { margin: 0 0 18px; position: relative; aspect-ratio: 4 / 3; background: var(--vlak); overflow: hidden; }
+.project figure img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.project figure.geen-foto { display: grid; place-items: center; }
+.project figure.geen-foto img { width: 72px; height: auto; opacity: 0.55; }
+.project figure.geen-foto .open { position: absolute; left: 12px; bottom: 12px; font-size: 13px; }
+.status { position: absolute; top: 12px; left: 12px; background: var(--ivoor); color: var(--smaragd); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; padding: 4px 10px; }
+.project h2 { font-family: var(--kop); font-weight: 700; font-size: 22px; line-height: 1.25; margin: 0 0 4px; }
+.project .plaats { font-size: 13px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--label); margin: 0 0 6px; }
+.project .zin { margin: 0 0 6px; font-size: 16px; line-height: 1.55; }
+.project .jaar { margin: 0; font-size: 14px; letter-spacing: 0.04em; opacity: 0.75; }
+.geen-resultaat { padding: 0 0 96px; }
+
+.linkedin { display: inline-flex; align-items: center; gap: 10px; }
+.linkedin svg { width: 20px; height: 20px; flex: none; }
+
+.voet { background: var(--voet); color: #CFC8B8; font-size: 14px; padding: 26px 16px; text-align: center; letter-spacing: 0.02em; }
+.voet a { color: #CFC8B8; border-bottom-color: transparent; }
+.voet a:hover { color: var(--champagne); }
+
+/* Nog in te vullen: alleen zichtbaar in deze opzet */
+.open { background: var(--open-bg); color: var(--open-tekst); padding: 0 4px; border-radius: 2px; }
+.voet .open { background: transparent; color: var(--champagne); }
+
+/* Afdrukken / pdf: elke pagina op één A4 */
+@media print {
+  body { font-size: 15px; }
+  .instellingen { display: none; }
+  body { line-height: 1.6; }
+  .opening { min-height: 0; padding: 96px 16px 84px; }
+  .kop { padding: 72px 0 36px; }
+  .kop .logo { margin-bottom: 28px; }
+  .tekst, .contact { padding: 44px 0 36px; }
+  .blok { padding: 16px 0; }
+  .vastor { margin-top: 10px !important; }
+  .vastor a { padding: 0; }
+  .vastor img { height: 44px; }
+}
+
+/* Heel hoge schermen (en schermafbeeldingen van de hele pagina): opening niet eindeloos hoog */
+@media screen and (min-height: 1400px) {
+  .opening { min-height: 650px; }
+}
+
+/* Tablet */
+@media screen and (max-width: 900px) {
+  .opening { min-height: 64vh; }
+  .drie { grid-template-columns: 1fr; gap: 44px; }
+  .projecten { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Telefoon */
+@media screen and (max-width: 640px) {
+  body { font-size: 17px; }
+  .balk .binnen { justify-content: space-between; padding-top: 12px; gap: 4px 16px; }
+  .menu { gap: 18px; }
+  .opening { min-height: 60vh; padding-top: 96px; }
+  .kop { padding: 88px 0 48px; }
+  .kop .logo { margin-bottom: 28px; }
+  .tekst, .contact { padding: 64px 0 56px; }
+  .blok { padding: 32px 0; }
+  .organisatie { padding: 64px 0 72px; }
+  .projecten { grid-template-columns: 1fr; padding-bottom: 72px; }
+  .intro { padding-top: 56px; }
+}
+
+/* Gele werklabels (interne notities) niet tonen op de live site. Weghalen om ze weer te zien. */
+.open { display: none !important; }
